@@ -176,7 +176,7 @@ function App() {
   const [searchRadius, setSearchRadius] = useState(50); // km
 
   useEffect(() => {
-    const ws = new WebSocket('ws://localhost:6500');
+    const ws = new WebSocket('wss://pingnearby.onrender.com');
     wsRef.current = ws;
 
     ws.onopen = () => {
