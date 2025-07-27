@@ -1,12 +1,7 @@
 import http from 'http'
 import { WebSocketServer } from 'ws';
 
-const server = http.createServer((req, res) => {
-  if (req.url == '/') {
-    console.log("home route listening")
-    res.json({ page: "home" });
-  }
-})
+const server = http.createServer();
 
 const wss = new WebSocketServer({ server });
 
