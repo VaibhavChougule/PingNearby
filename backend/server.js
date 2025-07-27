@@ -83,8 +83,8 @@ wss.on('connection', (ws, req) => {
 
 });
 
-
+const PORT = process.env.PORT || 6500;
 const HOST = '0.0.0.0';
-server.listen(6500, HOST ,() => {
+server.listen(PORT, HOST ,() => {
   console.log("server is listening on 6500");
 })
