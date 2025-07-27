@@ -84,7 +84,7 @@ wss.on('connection', (ws, req) => {
 });
 
 
-
-server.listen(6500, () => {
+const HOST = '0.0.0.0';
+server.listen(6500, HOST ,() => {
   console.log("server is listening on 6500");
 })
