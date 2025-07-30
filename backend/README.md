@@ -1,21 +1,16 @@
-# setDate Backend
+# PingNearby Backend
 
-A Node.js backend server for the setDate project.
+A Node.js backend server for the PingNearby project.
 
 ## Features
 
-- Express.js server with security middleware
+- Upgraded HTTP server to Websocket Server
 - CORS enabled for frontend communication
-- Request logging with Morgan
-- Security headers with Helmet
-- Environment variable configuration
-- Health check endpoint
-- Error handling middleware
 
 ## Prerequisites
 
-- Node.js (v14 or higher)
-- npm or yarn
+- Node.js
+- npm
 
 ## Installation
 
@@ -30,9 +25,6 @@ A Node.js backend server for the setDate project.
    ```
 
 3. Create environment file:
-   ```bash
-   cp env.example .env
-   ```
 
 4. Update the `.env` file with your configuration values.
 
@@ -41,18 +33,10 @@ A Node.js backend server for the setDate project.
 - `npm start` - Start the production server
 - `npm run dev` - Start the development server with nodemon (requires nodemon to be installed)
 
-## API Endpoints
-
-- `GET /` - Welcome message and server status
-- `GET /health` - Health check endpoint
 
 ## Environment Variables
 
-Copy `env.example` to `.env` and configure the following variables:
-
 - `PORT` - Server port (default: 5000)
-- `NODE_ENV` - Environment (development/production)
-- `CORS_ORIGIN` - Allowed CORS origin
 
 ## Project Structure
 
@@ -60,9 +44,8 @@ Copy `env.example` to `.env` and configure the following variables:
 backend/
 ├── server.js          # Main server file
 ├── package.json       # Dependencies and scripts
-├── .env              # Environment variables (create from env.example)
+├── .env              # Environment variables
 ├── .gitignore        # Git ignore rules
-├── env.example       # Example environment file
 └── README.md         # This file
 ```
 
