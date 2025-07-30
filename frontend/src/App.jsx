@@ -4,7 +4,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { MessageCircle, Users, MapPin, Wifi, WifiOff, X, Minimize2, Maximize2, Menu, Navigation, Search, Bell, Clock, User } from 'lucide-react';
 import ChatBox from './components/ChatBox.jsx';
-// Fix Leaflet default markers
+
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
@@ -12,7 +12,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
-// Custom marker icons
+
 const createCustomIcon = (color = '#3b82f6', isCurrentUser = false) => {
   return L.divIcon({
     className: 'custom-marker',
@@ -27,7 +27,7 @@ const createCustomIcon = (color = '#3b82f6', isCurrentUser = false) => {
   });
 };
 
-// Create search area marker
+
 const createSearchIcon = () => {
   return L.divIcon({
     className: 'search-marker',
@@ -44,7 +44,7 @@ const createSearchIcon = () => {
   });
 };
 
-// Map click handler component
+
 function MapClickHandler({ onMapClick }) {
   useMapEvents({
     click: (e) => {
@@ -169,7 +169,7 @@ function App() {
   const [waitingList, setWaitingList] = useState([]);
   const [showWaitingList, setShowWaitingList] = useState(false);
 
-  // New states for area-based search
+ 
   const [searchLocation, setSearchLocation] = useState(null);
   const [nearbyUsers, setNearbyUsers] = useState([]);
   const [showNearbyPanel, setShowNearbyPanel] = useState(false);
@@ -214,7 +214,7 @@ function App() {
       } else if (data.type === 'incoming_msg') {
         console.log("here:", data);
 
-        // Add timestamp to the message
+        // timestamp
         const messageWithTimestamp = {
           ...data,
           timestamp: Date.now()
@@ -251,7 +251,7 @@ function App() {
     };
   }, []);
 
-  // Calculate distance between two coordinates (Haversine formula)
+  //(Haversine formula)
   const calculateDistance = (lat1, lon1, lat2, lon2) => {
     const R = 6371; // Earth's radius in km
     const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -264,7 +264,7 @@ function App() {
     return R * c;
   };
 
-  // Handle map click to search for nearby users
+ 
   const handleMapClick = (latlng) => {
     const clickedLocation = { lat: latlng.lat, lng: latlng.lng };
     setSearchLocation(clickedLocation);
@@ -343,9 +343,9 @@ function App() {
 
   return (
     <div className="h-screen w-full flex flex-col bg-gray-100">
-      {/* Mobile Responsive Header */}
+
       <header className="bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg z-50 relative">
-        {/* Mobile Header */}
+        
         <div className="flex md:hidden items-center justify-between px-4 py-3">
           <div className="flex items-center gap-2">
             <MapPin className="text-blue-200" size={20} />
@@ -353,7 +353,7 @@ function App() {
           </div>
 
           <div className="flex items-center gap-2">
-            {/* Waiting List Button for Mobile */}
+            
             {waitingList.length > 0 && (
               <button
                 onClick={() => setShowWaitingList(!showWaitingList)}
@@ -375,7 +375,7 @@ function App() {
           </div>
         </div>
 
-        {/* Desktop Header */}
+    
         <div className="hidden md:flex items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
             <MapPin className="text-blue-200" size={24} />
@@ -386,7 +386,7 @@ function App() {
           </div>
 
           <div className="flex items-center gap-4">
-            {/* Waiting List Button */}
+            
             {waitingList.length > 0 && (
               <button
                 onClick={() => setShowWaitingList(!showWaitingList)}
@@ -714,8 +714,14 @@ function App() {
           />
         )}
       </div>
+        {connectionStatus == "error" || connectionStatus == "disconnected" && (
+          <div className='absolute top-16 right-10 h-16 w-80 p-2 bg-blue-700 rounded-md font-bold text-yellow-200 z-[9999]'>
+            <p className=' animate-bounce'>Try Refreshing..the backend may be facing downtime</p>
+          </div>
+        )}
+      
 
-      {/* Custom Styles */}
+      
       <style jsx>{`
         .custom-popup .leaflet-popup-content-wrapper {
           border-radius: 12px;

@@ -7,7 +7,7 @@ const wss = new WebSocketServer({ server });
 
 let clients = [];
 let clientLocation = []
-// {clientID:'3333334444' , latitude:19.5555555 , longitude:74.4444444}
+
 wss.on('connection', (ws, req) => {
   const clientIP = req.socket.remoteAddress;
   const clientID = Date.now().toString();
@@ -19,7 +19,7 @@ wss.on('connection', (ws, req) => {
   console.log(`Client connected: ${clientID} (${clientIP})`);
   console.log('Clients:', clients.map(c => c.id));
 
-  // Optional: handle messages from client
+ 
  ws.on('message', (message) => {
   const parsed = JSON.parse(message.toString());
   console.log("type:", parsed.type);
@@ -34,7 +34,7 @@ wss.on('connection', (ws, req) => {
     console.log(`Received from ${clientID}:`, parsed);
     console.log('All client locations:', clientLocation);
 
-    // 📡 Broadcast updated location list to all clients
+    // Broadcast updated location list to all clients
     clients.forEach(client => {
       // console.log("client info:" , client)
       if (client.ws.readyState === ws.OPEN) {
